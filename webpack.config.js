@@ -26,7 +26,11 @@ module.exports = {
         extensions: ['.js', '.jsx'],
         modules: ['node_modules', './app/components', './app/api'],
         alias: {
-            applicationStyles: path.resolve(__dirname, 'app/styles/app.scss')
+            applicationStyles: path.resolve(__dirname, 'app/styles/app.scss'),
+            api: path.resolve(__dirname, 'app/api/api.jsx'),
+            actions: path.resolve(__dirname, 'app/actions/actions.jsx'),
+            reducers: path.resolve(__dirname, 'app/reducers/reducers.jsx'),
+            configureStore: path.resolve(__dirname, 'app/store/configureStore.jsx'),
         },
     },
     devServer: {

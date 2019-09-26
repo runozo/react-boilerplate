@@ -1,7 +1,17 @@
+var envFile = require('node-env-file');
 var path = require('path');
 var webpack = require('webpack');
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+try {
+    envFile('./config/development.env', {verbose: true, overwrite: true, raise: false, logger: console});
+} catch (e) {
+
+}
+
 module.exports = {
+    mode: process.env.NODE_ENV,
     entry: [
         './app/app.jsx'
     ],
@@ -9,6 +19,9 @@ module.exports = {
         path: path.resolve(__dirname, './public'),
         filename: 'bundle.js'
     },
+    plugins: [
+        new webpack.EnvironmentPlugin(['NODE_ENV'])
+    ],
     resolve: {
         extensions: ['.js', '.jsx'],
         modules: ['node_modules', './app/components', './app/api'],
